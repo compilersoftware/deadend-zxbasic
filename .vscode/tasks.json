@@ -1,0 +1,41 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "make",
+            "type": "process",
+            "command": "/usr/local/bin/python3",
+            "args": [
+                "-W ignore",
+                "${env:HOME}/Applications/zxbasic/zxb.py",
+                "${workspaceFolderBasename}.bas",
+                "-t",
+                "-B",
+                "-a",
+                "-o${workspaceFolderBasename}.tap"
+                
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "run",
+            "type": "shell",
+            "osx": {
+                "command": "/Applications/Emulators/Retro Virtual Machine 2.app/Contents/MacOS/Retro Virtual Machine 2",
+            },
+            "args": [
+                "-b=zx48k",
+                "-i",
+                "${workspaceFolder}/${workspaceFolderBasename}.tap",
+                "-w",
+                "-c='j\"\"\\n'",
+                "-p"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}
